@@ -1,0 +1,30 @@
+{
+    "roles": [
+        {
+            "id": "01",
+            "name": "worker"
+        },
+        {
+            "id": "02",
+            "name": "customer"
+        }
+    ],
+
+    "users": [
+        {
+        
+        "id": "00",
+        "nombre": "Angelica Torres",
+        "identidad": "10774583",
+        "telefono": "300558972",
+        "dirección": "Calle 50 #70-45",
+        "email": "angelicatorres@gmail.com",
+        "contraseña": "angel123",
+        "rolId": "worker"
+    }
+    ],
+
+    "pets": [{}],
+
+    "stays": [{}]
+}

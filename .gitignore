@@ -1,0 +1,17 @@
+# Ignorar archivos de compilación
+*.class
+*.o
+*.out
+
+# Ignorar directorios específicos
+node_modules/
+dist/
+build/
+
+# Ignorar archivos de configuración de IDE
+.vscode/
+.idea/
+
+# Ignorar archivos temporales de sistema operativo
+*.log
+*.swp
