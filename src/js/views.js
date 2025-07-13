@@ -1,12 +1,64 @@
 
+import { api } from './api.js';
 import { auth } from './auth.js';
 
 export function notFound() {
-    document.getElementById('app'). innerHTML = '<h2>La página que busca no existe</h2>';
+    document.getElementById('main').innerHTML = `
+    <div class="container">
+    <h1>404</h1>
+    <p>Página no encontrada</p>
+    <a href="/">Volver al inicio</a>
+    </div>`;
 };
 
+export async function showLanding() {
+    document.getElementById('main').innerHTML = `
+    <section id="landing">
+    <header class="landing-header">
+      <h1>🐾 PetCare Center</h1>
+      <nav>
+        <button id="goToLogin">Iniciar sesión</button>
+        <button id="goToRegister">Registrarse</button>
+      </nav>
+    </header>
+
+    <main class="landing-main">
+      <section class="landing-text">
+        <h2>Tu mascota merece vacaciones también</h2>
+        <p>En <strong>PetCare Center</strong> cuidamos de tu peludo amigo como si fuera nuestro. Mientras tú te relajas,
+          nosotros nos encargamos de su felicidad, comodidad y bienestar.</p>
+        <div class="landing-cta">
+          <button id="cta-login">Ya tengo cuenta</button>
+          <button id="cta-register">Quiero registrarme</button>
+        </div>
+      </section>
+
+      <div class="landing-image">
+        <img src="https://cdn.pixabay.com/photo/2017/09/25/13/12/dog-2785074_1280.jpg" alt="Perro feliz en cuidado" />
+      </div>
+    </main>
+
+    <footer class="landing-footer">
+      <p>&copy; 2025 PetCare Center. Todos los derechos reservados.</p>
+    </footer>
+  </section>`;
+
+    document.getElementById('goToLogin').onclick = async e => {
+        e.preventDefault();
+        location.hash = '#/login';
+        router();
+    };
+
+    document.getElementById('goToRegister').onclick = async e => {
+        e.preventDefault();
+        location.hash = '#/register';
+        router();
+    }
+};
+
+
 export async function showLogin() {
-    document.getElementById('app').innerHTML = `
+    document.getElementById('main').innerHTML = `
     <section id="login" class="hidden">
         <div class="login-container">
             <h2>Iniciar sesión</h2>
@@ -24,30 +76,30 @@ export async function showLogin() {
             </p>
         </div>
     </section>`;
-    document.getElementById('form').onsubmit =async e => {
+    document.getElementById('form').onsubmit = async e => {
         e.preventDefault();
         try {
             await auth.login(e.target.e.value, e.target.p.value);
             location.hash = '#/dashboard';
             router();
         } catch (err) {
-            alert (err.mesage);
+            alert(err.mesage);
         };
     };
 };
 
 export async function showRegister() {
-    document.getElementById('app').innerHTML = `
+    document.getElementById('main').innerHTML = `
     <section id="register" class="hidden">
         <div class="register-container">
             <h2>Crear cuenta</h2>
 
-            <form id="r-form">
-                <input type="text" id="rn" placeholder="Nombre completo" required />
-                <input type="text" id="ru" placeholder="Nombre de usuario" required />
-                <input type="email" id="re" placeholder="Correo electrónico" required />
-                <input type="tel" id="rp" placeholder="Número de teléfono" required />
-                <input type="password" id="rpsw" placeholder="Contraseña" required />
+            <form id="register-form">
+                <input type="text" id="register-name" placeholder="Nombre completo" required />
+                <input type="text" id="register-user" placeholder="Nombre de usuario" required />
+                <input type="email" id="register-email" placeholder="Correo electrónico" required />
+                <input type="tel" id="register-phone" placeholder="Número de teléfono" required />
+                <input type="password" id="register-password" placeholder="Contraseña" required />
                 <button type="submit" id="btnr">Registrarse</button>
             </form>
 
@@ -57,21 +109,33 @@ export async function showRegister() {
             </p>
         </div>
     </section>`;
-    document.getElementById('r-form').onsubmit = async e => {
+
+    const name = document.getElementById("register-name");
+    const user = document.getElementById('register-user');
+    const email = document.getElementById("register-email");
+    const phone = document.getElementById('register-phone');
+    const password = document.getElementById("register-password");
+
+    document.getElementById('register-form').onsubmit = async e => {
         e.preventDefault();
-        try{
-            await auth.resgister(e.target.rn.value, e.target.ru.value, e.target.re.value, e.target.rp.value, e.target.rpsw.value);
+        try {
+            await auth.resgister(e.target.name.value, e.target.user.value, e.target.email.value, e.target.phone.value, e.target.password.value);
             location.hash = '#/dashboard';
             router();
         } catch (err) {
-            alert (err.message);
+            alert(err.message);
         }
+    };
+
+    document.getElementById('btnr').onclick = async e => {
+        e.preventDefault();
+        alert('Su registro ha sido exitoso')
     };
 };
 
 export async function showDashboard() {
     const u = auth.getUser();
-    document.getElementById('app').innerHTML = `
+    document.getElementById('main').innerHTML = `
     <section id="dashboard" class="hidden">
         <div class="dashboard-header">
             <h2>Mis Mascotas</h2>
@@ -115,6 +179,6 @@ export async function showDashboard() {
         </div>
     </section>`;
     document.getElementById('add-pet-btn').onclick = auth.logout;
-    };
-}
+};
+
 

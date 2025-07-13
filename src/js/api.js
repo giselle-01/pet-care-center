@@ -1,6 +1,6 @@
 
 export const api = {
-    base: 'http://localhost:3000',
+    base: 'http://localhost:5173',
 
     get: async param => {
         try {

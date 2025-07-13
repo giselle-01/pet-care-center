@@ -13,7 +13,7 @@ export const auth = {
     register: async  (name,email,pass) =>  {
         const existingUser = await api.get(`/users?email=${email}`);
         if (existingUser.length > 0) {
-            throw new Error('El email ya está registrado');
+            throw new Error('El usuario ya está registrado');
         }
         const newUser = {name, email, password: pass};
         await api.post('/users', newUser);
@@ -29,6 +29,10 @@ export const auth = {
 
     getUser: () => {
         const user = localStorage.getItem('user');
-        return user ? JSON.parse(user): null;
+        if (user) {
+            return JSON.parse(user);
+        } else {
+            return null
+        }
     }
 };
