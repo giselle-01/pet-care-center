@@ -16,6 +16,9 @@ const routes = {
 };
 
 export function router() {
+
+    
+
     const path = location.hash || '#/login';
     const user = auth.getUser();
 

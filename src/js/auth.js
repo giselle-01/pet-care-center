@@ -1,21 +1,21 @@
 import { api } from './api.js';
 
 export const auth = {
-    login: async (email, pass) => {
-        const users = await api.get (`/users?email=${email}`);
-        if (users.length === 0 || users[0] .password !== pass) {
-            throw new Error('Credenciales inválidas');
+    login: async (email, password) => {
+        const users = await api.get (`users?email=${email}`);
+        if (users.length === 0 || users[0].password !== password) {
+            throw new Error('Datos inválidos');
         }
         const user = users[0];
         localStorage.setItem('users', JSON.stringify(user));
     },
 
-    register: async  (name,email,pass) =>  {
-        const existingUser = await api.get(`/users?email=${email}`);
+    register: async  (name,email, password) =>  {
+        const existingUser = await api.get(`users?email=${email}`);
         if (existingUser.length > 0) {
             throw new Error('El usuario ya está registrado');
         }
-        const newUser = {name, email, password: pass};
+        const newUser = {name, email, password: password};
         await api.post('/users', newUser);
     },
 

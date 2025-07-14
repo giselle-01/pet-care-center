@@ -1,6 +1,6 @@
 
-import { api } from './api.js';
 import { auth } from './auth.js';
+import { api } from './api.js';
 
 export function notFound() {
     document.getElementById('main').innerHTML = `
@@ -53,7 +53,19 @@ export async function showLanding() {
         e.preventDefault();
         location.hash = '#/register';
         router();
-    }
+    };
+
+    document.getElementById('cta-login').onclick = async e => {
+        e.preventDefault();
+        location.hash = '#/login';
+        router();
+    };
+
+    document.getElementById('cta-register').onclick = async e => {
+        e.preventDefault();
+        location.hash = '#/register';
+        router();
+    };
 };
 
 
@@ -63,9 +75,9 @@ export async function showLogin() {
         <div class="login-container">
             <h2>Iniciar sesión</h2>
 
-            <form id="login-form">
-                <input type="text" id="login-username" placeholder="Usuario" autocomplete="username" required />
-                <input type="password" id="login-password" placeholder="Contraseña" autocomplete="current-password"
+            <form id="lgForm">
+                <input type="text" id="lgUsername" placeholder="Usuario" autocomplete="username" required />
+                <input type="password" id="lgPassword" placeholder="Contraseña" autocomplete="current-password"
                     required />
                 <button type="submit">Entrar</button>
             </form>
@@ -76,16 +88,23 @@ export async function showLogin() {
             </p>
         </div>
     </section>`;
-    document.getElementById('form').onsubmit = async e => {
+
+    document.getElementById('lgForm').onsubmit = async e => {
         e.preventDefault();
         try {
-            await auth.login(e.target.e.value, e.target.p.value);
+            await auth.login(e.target.lgUsername.value, e.target.lgPassword.value);
             location.hash = '#/dashboard';
             router();
         } catch (err) {
-            alert(err.mesage);
+            alert(err.mesage);            
         };
     };
+
+    document.getElementById('login-go-register').onclick = async e => {
+        e.preventDefault();
+        location.hash = '#/register';
+        router();
+    }
 };
 
 export async function showRegister() {

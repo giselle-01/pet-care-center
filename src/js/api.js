@@ -1,15 +1,15 @@
 
 export const api = {
-    base: 'http://localhost:5173',
+    URL: 'http://localhost:3000',
 
     get: async param => {
         try {
-            const response = await fetch(`${api.base}/${param}`);
+            const response = await fetch(`${api.URL}/${param}`);
             if (!response.ok) {
                 throw new Error('Error al obtener los datos');
             }
             return await response.json();
-        } catch (error) {
+        }catch (error) {
             console.error('Error en la petición GET:', error);
             throw error;
         }
@@ -17,7 +17,7 @@ export const api = {
 
     post: async (param, data) => {
         try {
-            const response = await fetch(`${api.base}/${param}`,{
+            const response = await fetch(`${api.URL}/${param}`,{
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(data)  
@@ -34,7 +34,7 @@ export const api = {
 
     put: async (param, data) => {
         try {
-            const response = await fetch(`${api.base}/${param}`,{
+            const response = await fetch(`${api.URL}/${param}`,{
                 method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(data)  
@@ -51,7 +51,7 @@ export const api = {
 
     delete: async param => {
         try {
-            const response = await fetch(`${api.base}/${param}`,{
+            const response = await fetch(`${api.URL}/${param}`,{
                 method: 'DELETE',
             });
           if (!response.ok) {

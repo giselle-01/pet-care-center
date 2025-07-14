@@ -177,7 +177,7 @@ input, button {
   color: #333;
 }
 
-#login-form input {
+#lgForm input {
   width: 100%;
   padding: 12px;
   margin-bottom: 1.2rem;
@@ -186,12 +186,12 @@ input, button {
   font-size: 1rem;
 }
 
-#login-form input:focus {
+#lgForm input:focus {
   outline: none;
   border-color: #6c63ff;
 }
 
-#login-form button {
+#lgForm button {
   width: 100%;
   padding: 12px;
   border: none;
@@ -204,7 +204,7 @@ input, button {
   font-size: 1rem;
 }
 
-#login-form button:hover {
+#lgForm button:hover {
   background-color: #5249d1;
 }
 
