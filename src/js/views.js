@@ -1,6 +1,8 @@
 
+
 import { auth } from './auth.js';
-import { api } from './api.js';
+import { router } from './router.js';
+
 
 export function notFound() {
     document.getElementById('main').innerHTML = `
@@ -155,7 +157,7 @@ export async function showRegister() {
 export async function showDashboard() {
     const u = auth.getUser();
     document.getElementById('main').innerHTML = `
-    <section id="dashboard" class="hidden">
+    <section id="dashboard">
         <div class="dashboard-header">
             <h2>Mis Mascotas</h2>
             <div>
@@ -197,7 +199,23 @@ export async function showDashboard() {
             </div>
         </div>
     </section>`;
-    document.getElementById('add-pet-btn').onclick = auth.logout;
+
+    document.getElementById('add-pet-btn').onclick = async e => {
+        e.preventDefault();
+        document.getElementById("pet-form-modal").classList.remove("hidden");
+    };
+
+    document.getElementById('cancel-pet-form').onclick = async e => {
+        e.preventDefault();
+        document.getElementById("pet-form-modal").classList.add("hidden");
+    }
+
+    document.getElementById('logout-btn').onclick = async e => {
+        e.preventDefault();
+        auth.logout();
+        location.hash = '#/landing';
+        router();
+    };
 };
 
 

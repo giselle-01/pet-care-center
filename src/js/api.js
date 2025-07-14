@@ -1,10 +1,11 @@
-
+//Función que realiza las comunicaciones con la API, como peticiones HTTP con Fetch  (GET, POST, PUT, DELETE).
 export const api = {
     URL: 'http://localhost:3000',
 
+    //Función GET
     get: async param => {
         try {
-            const response = await fetch(`${api.URL}/${param}`);
+            const response = await fetch(`${api.URL}${param}`);
             if (!response.ok) {
                 throw new Error('Error al obtener los datos');
             }
@@ -15,6 +16,7 @@ export const api = {
         }
     },
 
+    //Función POST
     post: async (param, data) => {
         try {
             const response = await fetch(`${api.URL}/${param}`,{
@@ -32,6 +34,7 @@ export const api = {
         }
     },
 
+    //FUnción PUT
     put: async (param, data) => {
         try {
             const response = await fetch(`${api.URL}/${param}`,{
@@ -49,6 +52,7 @@ export const api = {
         }
     },
 
+    //Función DELETE
     delete: async param => {
         try {
             const response = await fetch(`${api.URL}/${param}`,{

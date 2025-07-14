@@ -14,12 +14,12 @@
         {
         
         "id": "00",
-        "nombre": "Angelica Torres",
-        "identidad": "10774583",
-        "telefono": "300558972",
-        "dirección": "Calle 50 #70-45",
+        "name": "Angelica Torres",
+        "cc": "10774583",
+        "phone": "300558972",
+        "address": "Calle 50 #70-45",
         "email": "angelicatorres@gmail.com",
-        "contraseña": "angel123",
+        "password": "angel123",
         "rolId": "01"
     }
     ],
