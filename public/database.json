@@ -1,30 +1,16 @@
 {
-    "roles": [
-        {
-            "id": "01",
-            "name": "worker"
-        },
-        {
-            "id": "02",
-            "name": "customer"
-        }
-    ],
-
     "users": [
         {
         
         "id": "00",
         "name": "Angelica Torres",
-        "cc": "10774583",
-        "phone": "300558972",
-        "address": "Calle 50 #70-45",
         "email": "angelicatorres@gmail.com",
         "password": "angel123",
-        "rolId": "01"
+        "rol": "administrador"
     }
     ],
 
-    "pets": [{}],
+    "events": [{}],
 
-    "stays": [{}]
+    "reservations": [{}]
 }

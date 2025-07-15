@@ -26,14 +26,17 @@ export const auth = {
         await api.post('/users', newUser);
     },
 
+    //Función Logout para eliminar los datos del usuario en localstorage.
     logout: () => {
         localStorage.removeItem('user');
     },
 
+    //Función isAuthenticated para confirmar que el usuario está autenticado.
     isAuthenticated: () => {
         return !!localStorage.getItem('user');
     },
 
+    //Función getUser para obtener los datos del usuario y pasarlos a un objeto json.
     getUser: () => {
         const user = localStorage.getItem('user');
         if (user) {
