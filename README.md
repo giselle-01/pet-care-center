@@ -1,2 +1,0 @@
-# pet-care-center
-Project

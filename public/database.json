@@ -1,0 +1,16 @@
+{
+    "users": [
+        {
+        
+        "id": "00",
+        "name": "Angelica Torres",
+        "email": "angelicatorres@gmail.com",
+        "password": "angel123",
+        "rol": "administrador"
+    }
+    ],
+
+    "events": [{}],
+
+    "reservations": [{}]
+}
