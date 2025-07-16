@@ -5,13 +5,14 @@ import { auth } from './auth.js';
 
 //Importaciones de las vistas (páginas).
 import {
-    loginPage,
+    notFound,    loginPage,
     registerPage,
     dashboardPage,
 } from './views.js';
 
 //Colección que contiene las redirecciones entre páginas.
 const routes = {
+    '#/notFound': notFound,
     '#/login': loginPage,
     '#/register': registerPage,
     '#/dashboard': dashboardPage

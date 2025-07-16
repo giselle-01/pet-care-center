@@ -1,6 +1,7 @@
 //En este archivo están las vistas que se implementarán en el HTML.
 
 //Se importan las funciones de autenticación y del rotulador.
+import './api.js';
 import { auth } from './auth.js';
 import { router } from './router.js';
 
@@ -92,7 +93,6 @@ export async function registerPage() {
 
 };
 
-//Función de la página del Dashboard (o panel).
 export async function dashboardPage() {
     const user = auth.getUser();
     document.getElementById('main').innerHTML = `
@@ -105,9 +105,10 @@ export async function dashboardPage() {
             </div>
         </div>
 
-        <div id="event-form-modal" class="modal hidden">
+        <div id="modal-backdrop" class="modal-backdrop"></div> <!-- Fondo oscuro -->
+        <div id="event-form" class="modal-hidden">
             <div class="modal-content">
-                <h3>Agregar Nuevo Evento</h3>
+                <h3>Agregar Evento</h3>
                 <form id="event-form">
                     <input type="text" id="title" placeholder="nombre" required />
                     <input type="text" id="description" placeholder="descripción" required />
@@ -126,7 +127,7 @@ export async function dashboardPage() {
             <div class="events-card">
                 <h3>Karthi</h3>
                 <p><strong>Descripción:</strong>Galería de arte, escultura y pinturas</p>
-                <p><strong>Capacidad:<strong/>12</p>
+                <p><strong>Capacidad:</strong>12</p>
                 <p><strong>Fecha:</strong>19-Abril, 2025</p>
 
                 <div class="card-buttons">
@@ -137,23 +138,33 @@ export async function dashboardPage() {
         </div>
     </section>`;
 
-    //Funcionalidad de los botones para cuando quiera agregar, eliminar, cancelar eventos y cerrar sesión.
-    document.getElementById('add-events-btn').onclick = async e => {
+    // Funcionalidad del botón "Agregar Evento"
+    document.getElementById('add-event-btn').onclick = async e => {
         e.preventDefault();
-        document.getElementById("events-form-modal").classList.remove("hidden");
+        document.getElementById("event-form").classList.remove("modal-hidden"); // Mostrar el modal
+        document.getElementById("event-form").classList.add("modal-visible"); // Hacer visible el modal
+        document.getElementById("modal-backdrop").classList.add("modal-visible"); // Mostrar fondo oscuro
     };
 
+    // Funcionalidad del botón "Cancelar" en el formulario
     document.getElementById('cancel-events-form').onclick = async e => {
         e.preventDefault();
-        document.getElementById("events-form-modal").classList.add("hidden");
-    }
+        document.getElementById("event-form").classList.remove("modal-visible"); // Ocultar el modal
+        document.getElementById("event-form").classList.add("modal-hidden"); // Volver a ocultar el modal
+        document.getElementById("modal-backdrop").classList.remove("modal-visible"); // Ocultar fondo oscuro
+    };
 
-    document.querySelector('delete-btn').onclick = async e => {
+    // Funcionalidad del botón de eliminar evento
+    document.querySelector('.delete-btn').onclick = async e => {
         e.preventDefault();
+        alert("Evento eliminado");
+        // Opcionalmente, esconder el formulario si se desea tras eliminar un evento
+        document.getElementById("event-form").classList.remove("modal-visible");
+        document.getElementById("event-form").classList.add("modal-hidden");
+        document.getElementById("modal-backdrop").classList.remove("modal-visible");
+    };
 
-        document.getElementById("event-form-model").classList.add("hidden");
-    }
-
+    // Funcionalidad de cerrar sesión
     document.getElementById('logout-btn').onclick = async e => {
         e.preventDefault();
         auth.logout();
@@ -161,6 +172,9 @@ export async function dashboardPage() {
         router();
     };
 };
+
+
+
 
 
 

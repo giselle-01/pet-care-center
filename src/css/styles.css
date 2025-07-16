@@ -14,7 +14,7 @@ body {
   color: #333;
 }
 
-.hidden {
+ .hidden {
   display: none !important;
 }
 
@@ -186,6 +186,8 @@ input, button {
 ===================================================== */
 
 #dashboard {
+  display: flex;
+  flex-direction: column;
   padding: 2rem;
   background: linear-gradient(to right, #fdfbfb, #ebedee);
   min-height: 100vh;
@@ -338,7 +340,7 @@ s-container {
   color: #333;
 }
 
-#events-form input {
+#event-form input {
   width: 100%;
   padding: 10px;
   margin-bottom: 1rem;
@@ -347,7 +349,7 @@ s-container {
   font-size: 1rem;
 }
 
-#events-form input:focus {
+#event-form input:focus {
   outline: none;
   border-color: #34c759;
 }
@@ -358,7 +360,7 @@ s-container {
   gap: 1rem;
 }
 
-#events-form button {
+#event-form button {
   flex: 1;
   padding: 10px;
   border: none;
@@ -369,20 +371,24 @@ s-container {
   transition: background 0.3s ease;
 }
 
-#events-form button[type="submit"] {
+#event-form button[type="submit"] {
   background-color: #34c759;
   color: white;
 }
 
-#events-form button[type="submit"]:hover {
+#event-form button[type="submit"]:hover {
   background-color: #28a745;
 }
 
-#cancel-events-form {
+#cancel-event-form {
   background-color: #ccc;
   color: #333;
 }
 
-#cancel-events-form:hover {
+#cancel-event-form:hover {
   background-color: #b3b3b3;
+}
+
+.modal-hidden {
+  display: none;
 }

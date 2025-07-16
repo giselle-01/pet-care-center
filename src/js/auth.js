@@ -18,7 +18,7 @@ export const auth = {
 
     //Función Register para registrar usuarios.
     register: async  (name,email, password) =>  {
-        const existingUser = await api.get(`users?email=${email}`); //Consulta para saber si el email ya está registrado.
+        const existingUser = await api.get(`/users?email=${email}`); //Consulta para saber si el email ya está registrado.
         if (existingUser.length > 0) {
             throw new Error('El usuario ya está registrado');
         }
